@@ -12,7 +12,3 @@ reposdir=/var/tmp/yum.repos.d/
 [base]
 name=CentOS-5.3 - Base
 baseurl=http://vault.centos.org/5.3/os/x86_64/
-
-[updates]
-name=CentOS-5.3 - Updates
-baseurl=http://vault.centos.org/5.3/os/x86_64/

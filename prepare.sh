@@ -23,10 +23,6 @@ reposdir=/var/tmp/yum.repos.d/
 [base]
 name=CentOS-$VERSION - Base
 baseurl=http://vault.centos.org/$VERSION/os/$ARCH/
-
-[updates]
-name=CentOS-$VERSION - Updates
-baseurl=http://vault.centos.org/$VERSION/os/$ARCH/
 END
 }
 

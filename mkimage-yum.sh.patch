@@ -1,10 +1,10 @@
 --- mkimage-yum.sh.orig	2018-01-05 11:35:00.087100742 +0900
-+++ mkimage-yum.sh	2018-01-05 11:33:53.490097793 +0900
++++ mkimage-yum.sh	2018-01-05 16:21:23.291785420 +0900
 @@ -18,6 +18,7 @@
                     The default is "Core".
    -y <yumconf>     The path to the yum config to install packages from. The
                     default is /etc/yum.conf for Centos/RHEL and /etc/dnf/dnf.conf for Fedora
-+  -v               Vault
++  -v               set vault.centos.org in /etc/yum.repos.d/CentOS-Base.repo
  EOOPTS
      exit 1
  }
@@ -28,7 +28,7 @@
          \?)
              echo "Invalid option: -$OPTARG"
              usage
-@@ -87,11 +92,24 @@
+@@ -87,10 +92,22 @@
  if [[ -n "$install_packages" ]];
  then
      yum -c "$yum_config" --installroot="$target" --releasever=/ --setopt=tsflags=nodocs \
@@ -36,27 +36,20 @@
 +        --setopt=group_package_types=mandatory -y install $install_packages
  fi
  
+-yum -c "$yum_config" --installroot="$target" -y clean all
 +# Fix up RPM database
 +rm "$target"/var/lib/rpm/*
 +chroot "$target" /bin/rpm --initdb
 +chroot "$target" /bin/rpm -i --justdb '/var/cache/yum/*/*/*/packages/*.rpm'
++chroot "$target" /usr/bin/yum -y clean all
 +
- yum -c "$yum_config" --installroot="$target" -y clean all
- 
 +if [ $vault = 1 ] ; then
-+	baseurl=$(grep '^baseurl=htt://vault.centos.org/' $yum_config | head -n 1)
-+	sed -i.bak \
++	version=$(grep '^baseurl=http://vault.centos.org/' $yum_config | head -n 1 | cut -d/ -f 4)
++	sed -i \
 +		-e '/^mirrorlist=/N;s/^mirrorlist=[^\n]*\n//' \
-+		-e 's|^#baseurl=.*|'$baseurl'|' \
++		-e 's|^#baseurl=http://mirror.centos.org/centos/$releasever/|baseurl=http://vault.centos.org/'"$version"'/|' \
 +		"$target"/etc/yum.repos.d/CentOS-Base.repo
 +fi
-+
+ 
  cat > "$target"/etc/sysconfig/network <<EOF
  NETWORKING=yes
- HOSTNAME=localhost.localdomain
-@@ -133,4 +151,4 @@
- 
- docker run -i -t --rm $name:$version /bin/bash -c 'echo success'
- 
--rm -rf "$target"
-+# rm -rf "$target"

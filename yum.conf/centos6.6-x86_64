@@ -12,7 +12,3 @@ reposdir=/var/tmp/yum.repos.d/
 [base]
 name=CentOS-6.6 - Base
 baseurl=http://vault.centos.org/6.6/os/x86_64/
-
-[updates]
-name=CentOS-6.6 - Updates
-baseurl=http://vault.centos.org/6.6/os/x86_64/
