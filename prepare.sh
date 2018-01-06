@@ -32,7 +32,7 @@ mk_run_image () {
 	cat <<END >> run.sh
 ERROR=0
 TAG=
-sh ./mkimage-yum.sh -y yum.conf/centos$VERSION-$ARCH -p "yum curl" -v centos || ERROR=1
+sh ./mkimage-yum.sh -y yum.conf/centos$VERSION-$ARCH -p "yum curl yum-utils" -v centos || ERROR=1
 if [ \$ERROR = 0 ] ; then
 	: \${TAG:=\$(docker images --format '{{.Tag}}' centos:${VERSION} | grep '^${VERSION}$')}
 	: \${TAG:=\$(docker images --format '{{.Tag}}' centos:${VERSION%%.*} | grep  '^${VERSION%%.*}$')}

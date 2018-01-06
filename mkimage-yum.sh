@@ -146,6 +146,8 @@ if [ -z "$version" ]; then
     version=$name
 fi
 
+umount "${target}"/proc || true
+
 tar --numeric-owner -c -C "$target" . | docker import - $name:$version
 
 docker run -i -t --rm $name:$version /bin/bash -c 'echo success'
