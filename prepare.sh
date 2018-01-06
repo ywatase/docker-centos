@@ -23,6 +23,10 @@ reposdir=/var/tmp/yum.repos.d/
 [base]
 name=CentOS-$VERSION - Base
 baseurl=http://vault.centos.org/$VERSION/os/$ARCH/
+
+[extras]
+name=CentOS-$VERSION - Extras
+baseurl=http://vault.centos.org/$VERSION/extras/$ARCH/
 END
 }
 
@@ -45,14 +49,14 @@ END
 
 echo '#!/bin/bash' > run.sh
 
-#for Arch in i386
-#do
-#    for Ver in 4.{4..9}
-#    do
-#           mk_yum_conf $Ver $Arch > yum.conf/centos$Ver-$Arch
-#        mk_run_image $Ver $Arch
-#    done
-#done
+for Arch in x86_64
+do
+    for Ver in 4.{4..9}
+	do
+		mk_yum_conf $Ver $Arch > yum.conf/centos$Ver-$Arch
+        mk_run_image $Ver $Arch
+    done
+done
 
 for Arch in x86_64
 do

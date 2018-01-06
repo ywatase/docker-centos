@@ -12,3 +12,7 @@ reposdir=/var/tmp/yum.repos.d/
 [base]
 name=CentOS-5.10 - Base
 baseurl=http://vault.centos.org/5.10/os/x86_64/
+
+[extras]
+name=CentOS-5.10 - Extras
+baseurl=http://vault.centos.org/5.10/extras/x86_64/
