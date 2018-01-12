@@ -33,36 +33,36 @@ END
 mk_run_image () {
 	local VERSION=$1
 	local ARCH=${2:-x86_64}
-	cat <<END >> run.sh
+	cat <<END
 ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos$VERSION-$ARCH -p "yum curl yum-utils" -v centos || ERROR=1
 if [ \$ERROR = 0 ] ; then
-	: \${TAG:=\$(docker images --format '{{.Tag}}' centos:${VERSION} | grep '^${VERSION}$')}
-	: \${TAG:=\$(docker images --format '{{.Tag}}' centos:${VERSION%%.*} | grep  '^${VERSION%%.*}$')}
-	docker tag centos:\$TAG  ywatase/centos:$VERSION
+	docker tag centos:$(get_tag $VERSION) ywatase/centos:$VERSION
+	docker push ywatase/centos:$VERSION
 else
 	echo $VERSION-$ARCH create failled >> error.log
 fi
 END
 }
 
+get_tag () {
+	local VERSION=$1
+	if [ $VERSION = "4.9" ] ; then
+		echo 4.8
+	elif [ $VERSION = "5.0" ] || [ $VERSION = "5.1" ] ; then
+		echo 5
+	else
+		echo $VERSION
+	fi
+}
+
 echo '#!/bin/bash' > run.sh
-
 for Arch in x86_64
 do
-    for Ver in 4.{4..9}
-	do
-		mk_yum_conf $Ver $Arch > yum.conf/centos$Ver-$Arch
-        mk_run_image $Ver $Arch
-    done
-done
-
-for Arch in x86_64
-do
-	for Ver in 5.{1..11} 6.{1..8}
+	for Ver in 4.{4..9} 5.{1..11} 6.{1..8}
 	do
 		mk_yum_conf $Ver > yum.conf/centos$Ver-$Arch
-		mk_run_image $Ver $Arch
+		mk_run_image $Ver $Arch | grep -vE '^\s*$' >> run.sh
 	done
 done
