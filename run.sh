@@ -3,9 +3,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.4-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.4 | grep '^4.4$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.4
+	docker tag centos:4.4 ywatase/centos:4.4
+	docker push ywatase/centos:4.4
 else
 	echo 4.4-x86_64 create failled >> error.log
 fi
@@ -13,9 +12,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.5-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.5 | grep '^4.5$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.5
+	docker tag centos:4.5 ywatase/centos:4.5
+	docker push ywatase/centos:4.5
 else
 	echo 4.5-x86_64 create failled >> error.log
 fi
@@ -23,9 +21,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.6-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.6 | grep '^4.6$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.6
+	docker tag centos:4.6 ywatase/centos:4.6
+	docker push ywatase/centos:4.6
 else
 	echo 4.6-x86_64 create failled >> error.log
 fi
@@ -33,9 +30,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.7-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.7 | grep '^4.7$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.7
+	docker tag centos:4.7 ywatase/centos:4.7
+	docker push ywatase/centos:4.7
 else
 	echo 4.7-x86_64 create failled >> error.log
 fi
@@ -43,9 +39,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.8-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.8 | grep '^4.8$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.8
+	docker tag centos:4.8 ywatase/centos:4.8
+	docker push ywatase/centos:4.8
 else
 	echo 4.8-x86_64 create failled >> error.log
 fi
@@ -53,9 +48,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos4.9-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4.9 | grep '^4.9$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:4 | grep  '^4$')}
-	docker tag centos:$TAG  ywatase/centos:4.9
+	docker tag centos:4.8 ywatase/centos:4.9
+	docker push ywatase/centos:4.9
 else
 	echo 4.9-x86_64 create failled >> error.log
 fi
@@ -63,9 +57,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.1-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.1 | grep '^5.1$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.1
+	docker tag centos:5 ywatase/centos:5.1
+	docker push ywatase/centos:5.1
 else
 	echo 5.1-x86_64 create failled >> error.log
 fi
@@ -73,9 +66,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.2-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.2 | grep '^5.2$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.2
+	docker tag centos:5.2 ywatase/centos:5.2
+	docker push ywatase/centos:5.2
 else
 	echo 5.2-x86_64 create failled >> error.log
 fi
@@ -83,9 +75,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.3-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.3 | grep '^5.3$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.3
+	docker tag centos:5.3 ywatase/centos:5.3
+	docker push ywatase/centos:5.3
 else
 	echo 5.3-x86_64 create failled >> error.log
 fi
@@ -93,9 +84,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.4-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.4 | grep '^5.4$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.4
+	docker tag centos:5.4 ywatase/centos:5.4
+	docker push ywatase/centos:5.4
 else
 	echo 5.4-x86_64 create failled >> error.log
 fi
@@ -103,9 +93,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.5-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.5 | grep '^5.5$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.5
+	docker tag centos:5.5 ywatase/centos:5.5
+	docker push ywatase/centos:5.5
 else
 	echo 5.5-x86_64 create failled >> error.log
 fi
@@ -113,9 +102,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.6-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.6 | grep '^5.6$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.6
+	docker tag centos:5.6 ywatase/centos:5.6
+	docker push ywatase/centos:5.6
 else
 	echo 5.6-x86_64 create failled >> error.log
 fi
@@ -123,9 +111,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.7-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.7 | grep '^5.7$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.7
+	docker tag centos:5.7 ywatase/centos:5.7
+	docker push ywatase/centos:5.7
 else
 	echo 5.7-x86_64 create failled >> error.log
 fi
@@ -133,9 +120,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.8-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.8 | grep '^5.8$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.8
+	docker tag centos:5.8 ywatase/centos:5.8
+	docker push ywatase/centos:5.8
 else
 	echo 5.8-x86_64 create failled >> error.log
 fi
@@ -143,9 +129,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.9-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.9 | grep '^5.9$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.9
+	docker tag centos:5.9 ywatase/centos:5.9
+	docker push ywatase/centos:5.9
 else
 	echo 5.9-x86_64 create failled >> error.log
 fi
@@ -153,9 +138,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.10-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.10 | grep '^5.10$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.10
+	docker tag centos:5.10 ywatase/centos:5.10
+	docker push ywatase/centos:5.10
 else
 	echo 5.10-x86_64 create failled >> error.log
 fi
@@ -163,9 +147,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos5.11-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5.11 | grep '^5.11$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:5 | grep  '^5$')}
-	docker tag centos:$TAG  ywatase/centos:5.11
+	docker tag centos:5.11 ywatase/centos:5.11
+	docker push ywatase/centos:5.11
 else
 	echo 5.11-x86_64 create failled >> error.log
 fi
@@ -173,9 +156,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.1-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.1 | grep '^6.1$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.1
+	docker tag centos:6.1 ywatase/centos:6.1
+	docker push ywatase/centos:6.1
 else
 	echo 6.1-x86_64 create failled >> error.log
 fi
@@ -183,9 +165,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.2-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.2 | grep '^6.2$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.2
+	docker tag centos:6.2 ywatase/centos:6.2
+	docker push ywatase/centos:6.2
 else
 	echo 6.2-x86_64 create failled >> error.log
 fi
@@ -193,9 +174,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.3-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.3 | grep '^6.3$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.3
+	docker tag centos:6.3 ywatase/centos:6.3
+	docker push ywatase/centos:6.3
 else
 	echo 6.3-x86_64 create failled >> error.log
 fi
@@ -203,9 +183,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.4-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.4 | grep '^6.4$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.4
+	docker tag centos:6.4 ywatase/centos:6.4
+	docker push ywatase/centos:6.4
 else
 	echo 6.4-x86_64 create failled >> error.log
 fi
@@ -213,9 +192,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.5-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.5 | grep '^6.5$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.5
+	docker tag centos:6.5 ywatase/centos:6.5
+	docker push ywatase/centos:6.5
 else
 	echo 6.5-x86_64 create failled >> error.log
 fi
@@ -223,9 +201,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.6-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.6 | grep '^6.6$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.6
+	docker tag centos:6.6 ywatase/centos:6.6
+	docker push ywatase/centos:6.6
 else
 	echo 6.6-x86_64 create failled >> error.log
 fi
@@ -233,9 +210,8 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.7-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.7 | grep '^6.7$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.7
+	docker tag centos:6.7 ywatase/centos:6.7
+	docker push ywatase/centos:6.7
 else
 	echo 6.7-x86_64 create failled >> error.log
 fi
@@ -243,9 +219,48 @@ ERROR=0
 TAG=
 sh ./mkimage-yum.sh -y yum.conf/centos6.8-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
 if [ $ERROR = 0 ] ; then
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6.8 | grep '^6.8$')}
-	: ${TAG:=$(docker images --format '{{.Tag}}' centos:6 | grep  '^6$')}
-	docker tag centos:$TAG  ywatase/centos:6.8
+	docker tag centos:6.8 ywatase/centos:6.8
+	docker push ywatase/centos:6.8
 else
 	echo 6.8-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos7.0.1406-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:7.0.1406 ywatase/centos:7.0.1406
+	docker push ywatase/centos:7.0.1406
+	docker tag ywatase/centos:7.0.1406  ywatase/centos:7.0 ; docker push ywatase/centos:7.0
+else
+	echo 7.0.1406-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos7.1.1503-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:7.1.1503 ywatase/centos:7.1.1503
+	docker push ywatase/centos:7.1.1503
+	docker tag ywatase/centos:7.1.1503  ywatase/centos:7.1 ; docker push ywatase/centos:7.1
+else
+	echo 7.1.1503-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos7.2.1511-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:7.2.1511 ywatase/centos:7.2.1511
+	docker push ywatase/centos:7.2.1511
+	docker tag ywatase/centos:7.2.1511  ywatase/centos:7.2 ; docker push ywatase/centos:7.2
+else
+	echo 7.2.1511-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos7.3.1611-x86_64 -p "yum curl yum-utils" -v centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:7.3.1611 ywatase/centos:7.3.1611
+	docker push ywatase/centos:7.3.1611
+	docker tag ywatase/centos:7.3.1611  ywatase/centos:7.3 ; docker push ywatase/centos:7.3
+else
+	echo 7.3.1611-x86_64 create failled >> error.log
 fi
