@@ -40,6 +40,7 @@ sh ./mkimage-yum.sh -y yum.conf/centos$VERSION-$ARCH -p "yum curl yum-utils" -v 
 if [ \$ERROR = 0 ] ; then
 	docker tag centos:$(get_tag $VERSION) ywatase/centos:$VERSION
 	docker push ywatase/centos:$VERSION
+	$(add_short_tag $VERSION)
 else
 	echo $VERSION-$ARCH create failled >> error.log
 fi
@@ -56,11 +57,18 @@ get_tag () {
 		echo $VERSION
 	fi
 }
+add_short_tag () {
+	local VERSION=$1
+	if [ ${VERSION%%.*} = 7 ] ; then
+		echo "docker tag ywatase/centos:$VERSION ywatase/centos:${VERSION%.*}; docker push ywatase/centos:${VERSION%.*}"
+	fi
+}
+
 
 echo '#!/bin/bash' > run.sh
 for Arch in x86_64
 do
-	for Ver in 4.{4..9} 5.{1..11} 6.{1..8}
+	for Ver in 4.{4..9} 5.{1..11} 6.{1..8} 7.0.1406 7.1.1503 7.2.1511 7.3.1611
 	do
 		mk_yum_conf $Ver > yum.conf/centos$Ver-$Arch
 		mk_run_image $Ver $Arch | grep -vE '^\s*$' >> run.sh
