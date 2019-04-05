@@ -68,7 +68,7 @@ add_short_tag () {
 echo '#!/bin/bash' > run.sh
 for Arch in x86_64
 do
-	for Ver in 4.{4..9} 5.{1..11} 6.{1..8} 7.0.1406 7.1.1503 7.2.1511 7.3.1611
+	for Ver in 4.{4..9} 5.{1..11} 6.{1..9} 7.0.1406 7.1.1503 7.2.1511 7.3.1611 7.4.1708 7.5.1804
 	do
 		mk_yum_conf $Ver > yum.conf/centos$Ver-$Arch
 		mk_run_image $Ver $Arch | grep -vE '^\s*$' >> run.sh
