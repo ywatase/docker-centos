@@ -91,7 +91,8 @@ mknod -m 666 "$target"/dev/urandom c 1 9
 mknod -m 666 "$target"/dev/zero c 1 5
 
 # amazon linux yum will fail without vars set
-if [ -d /etc/yum/vars ]; then
+# CentOS 8 yum will fail with vars set
+if [ $name != "centos" -a -d /etc/yum/vars ]; then
     mkdir -p -m 755 "$target"/etc/yum
     cp -a /etc/yum/vars "$target"/etc/yum/
 fi
