@@ -13,11 +13,13 @@ usage() {
 $(basename $0) [OPTIONS] <name>
 OPTIONS:
   -p "<packages>"  The list of packages to install in the container.
-                   The default is blank.
+                   The default is blank. Can use multiple times.
   -g "<groups>"    The groups of packages to install in the container.
-                   The default is "Core".
+                   The default is "Core". Can use multiple times.
   -y <yumconf>     The path to the yum config to install packages from. The
                    default is /etc/yum.conf for Centos/RHEL and /etc/dnf/dnf.conf for Fedora
+  -t <tag>         Specify Tag information.
+                   default is reffered at /etc/{redhat,system}-release
   -v               set vault.centos.org in /etc/yum.repos.d/CentOS-Base.repo
 EOOPTS
     exit 1
@@ -29,9 +31,12 @@ if [ -f /etc/dnf/dnf.conf ] && command -v dnf &> /dev/null; then
 	yum_config=/etc/dnf/dnf.conf
 	alias yum=dnf
 fi
-install_groups="Core"
+# for names with spaces, use double quotes (") as install_groups=('Core' '"Compute Node"')
+install_groups=()
+install_packages=()
+version=
 vault=0
-while getopts ":y:p:g:hv" opt; do
+while getopts ":y:p:g:t:hv" opt; do
     case $opt in
         y)
             yum_config=$OPTARG
@@ -40,10 +45,13 @@ while getopts ":y:p:g:hv" opt; do
             usage
             ;;
         p)
-            install_packages="$OPTARG"
+            install_packages+=("$OPTARG")
             ;;
         g)
-            install_groups="$OPTARG"
+            install_groups+=("$OPTARG")
+            ;;
+        t)
+            version="$OPTARG"
             ;;
 		v)
 			vault=1
@@ -59,6 +67,11 @@ name=$1
 
 if [[ -z $name ]]; then
     usage
+fi
+
+# default to Core group if not specified otherwise
+if [ ${#install_groups[*]} -eq 0 ]; then
+   install_groups=('Core')
 fi
 
 target=$(mktemp -d --tmpdir $(basename $0).XXXXXX)
@@ -86,13 +99,13 @@ fi
 if [[ -n "$install_groups" ]];
 then
     yum -c "$yum_config" --installroot="$target" --releasever=/ --setopt=tsflags=nodocs \
-        --setopt=group_package_types=mandatory -y groupinstall "$install_groups"
+        --setopt=group_package_types=mandatory -y groupinstall "${install_groups[@]}"
 fi
 
 if [[ -n "$install_packages" ]];
 then
     yum -c "$yum_config" --installroot="$target" --releasever=/ --setopt=tsflags=nodocs \
-        --setopt=group_package_types=mandatory -y install $install_packages
+        --setopt=group_package_types=mandatory -y install "${install_packages[@]}"
 fi
 
 # Fix up RPM database
@@ -132,14 +145,15 @@ rm -rf "$target"/sbin/sln
 rm -rf "$target"/etc/ld.so.cache "$target"/var/cache/ldconfig
 mkdir -p --mode=0755 "$target"/var/cache/ldconfig
 
-version=
-for file in "$target"/etc/{redhat,system}-release
-do
-    if [ -r "$file" ]; then
-        version="$(sed 's/^[^0-9\]*\([0-9.]\+\).*$/\1/' "$file")"
-        break
-    fi
-done
+if [ -z "$version" ]; then
+    for file in "$target"/etc/{redhat,system}-release
+    do
+        if [ -r "$file" ]; then
+            version="$(sed 's/^[^0-9\]*\([0-9.]\+\).*$/\1/' "$file")"
+            break
+        fi
+    done
+fi
 
 if [ -z "$version" ]; then
     echo >&2 "warning: cannot autodetect OS version, using '$name' as tag"
