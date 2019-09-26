@@ -28,8 +28,8 @@ EOOPTS
 # option defaults
 yum_config=/etc/yum.conf
 if [ -f /etc/dnf/dnf.conf ] && command -v dnf &> /dev/null; then
-	yum_config=/etc/dnf/dnf.conf
-	alias yum=dnf
+    yum_config=/etc/dnf/dnf.conf
+    alias yum=dnf
 fi
 # for names with spaces, use double quotes (") as install_groups=('Core' '"Compute Node"')
 install_groups=()
@@ -53,9 +53,9 @@ while getopts ":y:p:g:t:hv" opt; do
         t)
             version="$OPTARG"
             ;;
-		v)
-			vault=1
-			;;
+        v)
+            vault=1
+            ;;
         \?)
             echo "Invalid option: -$OPTARG"
             usage
@@ -92,8 +92,8 @@ mknod -m 666 "$target"/dev/zero c 1 5
 
 # amazon linux yum will fail without vars set
 if [ -d /etc/yum/vars ]; then
-	mkdir -p -m 755 "$target"/etc/yum
-	cp -a /etc/yum/vars "$target"/etc/yum/
+    mkdir -p -m 755 "$target"/etc/yum
+    cp -a /etc/yum/vars "$target"/etc/yum/
 fi
 
 if [[ -n "$install_groups" ]];
@@ -115,11 +115,11 @@ chroot "$target" /bin/rpm -i --justdb '/var/cache/yum/*/*/*/packages/*.rpm'
 chroot "$target" /usr/bin/yum -y clean all
 
 if [ $vault = 1 ] ; then
-	version=$(grep '^baseurl=http://vault.centos.org/' $yum_config | head -n 1 | cut -d/ -f 4)
-	sed -i \
-		-e '/^mirrorlist=/N;s/^mirrorlist=[^\n]*\n//' \
-		-e 's|^#baseurl=http://mirror.centos.org/centos/$releasever/|baseurl=http://vault.centos.org/'"$version"'/|' \
-		"$target"/etc/yum.repos.d/CentOS-Base.repo
+    version=$(grep '^baseurl=http://vault.centos.org/' $yum_config | head -n 1 | cut -d/ -f 4)
+    sed -i \
+        -e '/^mirrorlist=/N;s/^mirrorlist=[^\n]*\n//' \
+        -e 's|^#baseurl=http://mirror.centos.org/centos/$releasever/|baseurl=http://vault.centos.org/'"$version"'/|' \
+        "$target"/etc/yum.repos.d/CentOS-Base.repo
 fi
 
 cat > "$target"/etc/sysconfig/network <<EOF
