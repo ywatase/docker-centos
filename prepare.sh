@@ -60,7 +60,7 @@ mirror_url () {
 is_archived () {
 	local VERSION=$1
 	case $VERSION in
-		6.10 | 7.7.1908 | 8.0.1905)
+		6.10 | 7.7.1908 | 8.1.1911)
 			false
 			;;
 		*)
@@ -125,7 +125,7 @@ do
 		mk_yum_conf $Ver > yum.conf/centos$Ver-$Arch
 		mk_run_image $Ver $Arch "$opt -p yum-utils -p curl" | grep -vE '^\s*$' >> run.sh
 	done
-	for Ver in 8.0.1905
+	for Ver in 8.0.1905 8.1.1911
 	do
 		opt=
 		is_archived $Ver && opt=-v

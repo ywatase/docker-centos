@@ -11,8 +11,8 @@ reposdir=/var/tmp/yum.repos.d/
 
 [base]
 name=CentOS-8.0.1905 - Base
-baseurl=http://mirror.centos.org/centos/8.0.1905/BaseOS/x86_64/os/
+baseurl=http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/
 
 [extras]
 name=CentOS-8.0.1905 - Extras
-baseurl=http://mirror.centos.org/centos/8.0.1905/extras/x86_64/os/
+baseurl=http://vault.centos.org/8.0.1905/extras/x86_64/os/

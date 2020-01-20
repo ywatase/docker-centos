@@ -324,11 +324,21 @@ else
 fi
 ERROR=0
 TAG=
-sh ./mkimage-yum.sh -y yum.conf/centos8.0.1905-x86_64  -p curl centos || ERROR=1
+sh ./mkimage-yum.sh -y yum.conf/centos8.0.1905-x86_64 -v -p curl centos || ERROR=1
 if [ $ERROR = 0 ] ; then
 	docker tag centos:8.0.1905 ywatase/centos:8.0.1905
 	docker push ywatase/centos:8.0.1905
 	docker tag ywatase/centos:8.0.1905 ywatase/centos:8.0; docker push ywatase/centos:8.0
 else
 	echo 8.0.1905-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos8.1.1911-x86_64  -p curl centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:8.1.1911 ywatase/centos:8.1.1911
+	docker push ywatase/centos:8.1.1911
+	docker tag ywatase/centos:8.1.1911 ywatase/centos:8.1; docker push ywatase/centos:8.1
+else
+	echo 8.1.1911-x86_64 create failled >> error.log
 fi
