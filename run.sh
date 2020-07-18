@@ -314,13 +314,23 @@ else
 fi
 ERROR=0
 TAG=
-sh ./mkimage-yum.sh -y yum.conf/centos7.7.1908-x86_64  -p yum-utils -p curl centos || ERROR=1
+sh ./mkimage-yum.sh -y yum.conf/centos7.7.1908-x86_64 -v -p yum-utils -p curl centos || ERROR=1
 if [ $ERROR = 0 ] ; then
 	docker tag centos:7.7.1908 ywatase/centos:7.7.1908
 	docker push ywatase/centos:7.7.1908
 	docker tag ywatase/centos:7.7.1908 ywatase/centos:7.7; docker push ywatase/centos:7.7
 else
 	echo 7.7.1908-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos7.8.2003-x86_64  -p yum-utils -p curl centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:7.8.2003 ywatase/centos:7.8.2003
+	docker push ywatase/centos:7.8.2003
+	docker tag ywatase/centos:7.8.2003 ywatase/centos:7.8; docker push ywatase/centos:7.8
+else
+	echo 7.8.2003-x86_64 create failled >> error.log
 fi
 ERROR=0
 TAG=
@@ -334,11 +344,21 @@ else
 fi
 ERROR=0
 TAG=
-sh ./mkimage-yum.sh -y yum.conf/centos8.1.1911-x86_64  -p curl centos || ERROR=1
+sh ./mkimage-yum.sh -y yum.conf/centos8.1.1911-x86_64 -v -p curl centos || ERROR=1
 if [ $ERROR = 0 ] ; then
 	docker tag centos:8.1.1911 ywatase/centos:8.1.1911
 	docker push ywatase/centos:8.1.1911
 	docker tag ywatase/centos:8.1.1911 ywatase/centos:8.1; docker push ywatase/centos:8.1
 else
 	echo 8.1.1911-x86_64 create failled >> error.log
+fi
+ERROR=0
+TAG=
+sh ./mkimage-yum.sh -y yum.conf/centos8.2.2004-x86_64  -p curl centos || ERROR=1
+if [ $ERROR = 0 ] ; then
+	docker tag centos:8.2.2004 ywatase/centos:8.2.2004
+	docker push ywatase/centos:8.2.2004
+	docker tag ywatase/centos:8.2.2004 ywatase/centos:8.2; docker push ywatase/centos:8.2
+else
+	echo 8.2.2004-x86_64 create failled >> error.log
 fi

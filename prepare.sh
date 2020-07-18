@@ -60,7 +60,7 @@ mirror_url () {
 is_archived () {
 	local VERSION=$1
 	case $VERSION in
-		6.10 | 7.7.1908 | 8.1.1911)
+		6.10 | 7.8.2003 | 8.2.2004)
 			false
 			;;
 		*)
@@ -118,14 +118,14 @@ add_short_tag () {
 echo '#!/bin/bash' > run.sh
 for Arch in x86_64
 do
-	for Ver in 4.{4..9} 5.{1..11} 6.{1..10} 7.0.1406 7.1.1503 7.2.1511 7.3.1611 7.4.1708 7.5.1804 7.6.1810 7.7.1908
+	for Ver in 4.{4..9} 5.{1..11} 6.{1..10} 7.0.1406 7.1.1503 7.2.1511 7.3.1611 7.4.1708 7.5.1804 7.6.1810 7.7.1908 7.8.2003
 	do
 		opt=
 		is_archived $Ver && opt=-v
 		mk_yum_conf $Ver > yum.conf/centos$Ver-$Arch
 		mk_run_image $Ver $Arch "$opt -p yum-utils -p curl" | grep -vE '^\s*$' >> run.sh
 	done
-	for Ver in 8.0.1905 8.1.1911
+	for Ver in 8.0.1905 8.1.1911 8.2.2004
 	do
 		opt=
 		is_archived $Ver && opt=-v

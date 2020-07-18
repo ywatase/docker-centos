@@ -19,7 +19,7 @@ Almost same https://raw.githubusercontent.com/moby/moby/master/contrib/mkimage-y
 ```
 bash ./prepare.sh
 # edit run.sh and yum.conf.d
-# no edit, run.sh make centos 4.4 - 7.3 images.
+# no edit, run.sh make centos 4.4 - 8.2 images.
 sudo bash ./run.sh
 ```
 
